@@ -32,6 +32,18 @@ class NhanVien
         }
         return $list;
     }
+
+    static function getManager()
+    {
+        $list = [];
+        $db =DB::getInstance();
+        $reg = $db->query('select  NhanVien.Id, NhanVien.TenNV, NhanVien.DienThoai, NhanVien.Email, NhanVien.DiaChi, NhanVien.TaiKhoan, NhanVien.MatKhau, NhanVien.IsActive from NhanVien JOIN danhsachquyen JOIN quyen ON quyen.Id = danhsachquyen.IdQuyen AND danhsachquyen.IdNV = NhanVien.Id WHERE quyen.TenQuyen = "manager" AND IsActive = 1');
+        foreach ($reg->fetchAll() as $item){
+            $list[] =new NhanVien($item['Id'],$item['TenNV'],$item['DienThoai'],$item['Email'],$item['DiaChi'],$item['TaiKhoan'],$item['MatKhau'],$item['IsActive']);
+        }
+        return $list;
+    }
+
     static function find($id)
     {
         $db = DB::getInstance();
@@ -44,11 +56,12 @@ class NhanVien
         }
         return null;
     }
+    
     static function add($ten,$dienthoai,$email,$diachi,$taikhoan,$matkhau,$isactive)
     {
         $matkhau=md5($matkhau);
         $db =DB::getInstance();
-        $reg =$db->query('INSERT INTO NhanVien(TenNV,DienThoai,Email,DiaChi,TaiKhoan,MatKhau,IsActive) VALUES ("'.$ten.'","'.$dienthoai.'","'.$email.'","'.$diachi.'","'.$taikhoan.'","'.$matkhau.'","'.$isactive.'")');
+        $reg =$db->query('INSERT INTO NhanVien(TenNV,DienThoai,Email,DiaChi,TaiKhoan,MatKhau,IsActive, permisionId) VALUES ("'.$ten.'","'.$dienthoai.'","'.$email.'","'.$diachi.'","'.$taikhoan.'","'.$matkhau.'","'.$isactive.'")');
         header('location:index.php?controller=nhanvien&action=index');
     }
     static function update($id,$ten,$dienthoai,$email,$diachi,$isactive)

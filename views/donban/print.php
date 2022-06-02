@@ -122,7 +122,12 @@ foreach ($reg1->fetchAll() as $item){
     </section>
     <!-- End block content -->
     </body>
-
+<style>
+        @media print {
+   #accordionSidebar * { display:none; }
+   #section { display:block; }
+}
+</style>
 <?php
 
 if (isset($_POST['chua'])) {

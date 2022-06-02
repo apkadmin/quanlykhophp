@@ -21,15 +21,6 @@ require_once ('models/phanquyen.php');
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Tài khoản</th>
-                    <th>Quyền</th>
-                    <th>Action</th>
-
-                </tr>
-                </tfoot>
                 <tbody>
 
                 <?php

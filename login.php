@@ -82,15 +82,19 @@ if (isset($_POST['login'])){
     if ($test!='') {
         $list3 = [];
         $db3 = DB::getInstance();
-        $reg3 = $db3->query('SELECT ds.Id ,nv.TaiKhoan ,q.TenQuyen FROM DanhSachQuyen ds JOIN NhanVien nv JOIN Quyen q ON ds.IdNV = nv.Id AND ds.IdQuyen = q.Id where ds.IdNV='.$test->Id.' AND ds.IdQuyen=1');
+        $reg3 = $db3->query('SELECT ds.Id ,nv.TaiKhoan ,q.TenQuyen FROM DanhSachQuyen ds JOIN NhanVien nv JOIN Quyen q ON ds.IdNV = nv.Id AND ds.IdQuyen = q.Id where ds.IdNV='.$test->Id);
         foreach ($reg3->fetchAll() as $item3) {
             $list3[] = new PhanQuyen($item3['Id'], $item3['TaiKhoan'], $item3['TenQuyen']);
         }
+
+       
+ 
         $data3 =array('phanquyen'=> $list3);
        $_SESSION['active']=$test->IsActive;
+       $_SESSION['userId'] = $test->Id;
            $_SESSION['username'] = $name;
            if (isset($list3[0]->IdQuyen)){
-               $_SESSION['quyen'] = "admin";
+               $_SESSION['quyen'] = $list3[0]->IdQuyen;
            }
            else {
                $_SESSION['quyen'] = "nhanvien";

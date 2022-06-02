@@ -26,17 +26,6 @@ require_once ('models/donban.php');
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Thời gian</th>
-                    <th>Nhân Viên</th>
-                    <th>Khách Hàng</th>
-                    <th>Tổng tiền</th>
-                    <th>Action</th>
-
-                </tr>
-                </tfoot>
                 <tbody>
 
                 <?php
@@ -60,7 +49,7 @@ require_once ('models/donban.php');
                                 }
                                 ?></td>
                             <td><!--<a  href="index.php?controller=khachhangs&action=showPost&id=--><!--"  class='btn btn-primary mr-3'>Details</a>-->
-                                <a  href="index.php?controller=donban&action=show&id=<?= $item->Id?>"  class='btn btn-primary mr-3'>Details</a>
+                                <a  href="index.php?controller=donban&action=detail&id=<?= $item->Id?>"  class='btn btn-primary mr-3'>Details</a>
 
                                 <a  href="index.php?controller=donban&action=print&id=<?= $item->Id?>"  class='btn btn-primary mr-3'>Print</a>
                                 <button type="submit" name="dele" value="<?= $item->Id ?>"    class='btn btn-danger'>Delete</button>

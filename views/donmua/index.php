@@ -4,7 +4,7 @@
 require_once ('models/donmua.php');
 ?>
 
-<h1 class="h3 mb-2 text-center text-gray-800 ">Đơn bán</h1>
+<h1 class="h3 mb-2 text-center text-gray-800 ">Đơn mua</h1>
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
@@ -26,18 +26,6 @@ require_once ('models/donmua.php');
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tfoot>
-                <tr>
-                    <th>ID</th>
-                    <th>Thời gian</th>
-                    <th>Nhân Viên</th>
-                    <th>Nhà Cung Cấp</th>
-                    <th>Tổng tiền</th>
-                    <th>Trạng Thái</th>
-                    <th>Action</th>
-
-                </tr>
-                </tfoot>
                 <tbody>
 
                 <?php
@@ -61,7 +49,7 @@ require_once ('models/donmua.php');
                                 }
                                 ?></td>
                             <td><!--<a  href="index.php?controller=khachhangs&action=showPost&id=--><!--"  class='btn btn-primary mr-3'>Details</a>-->
-                                <a  href="index.php?controller=donmua&action=show&id=<?= $item->Id?>"  class='btn btn-primary mr-3'>Details</a>
+                                <a  href="index.php?controller=donmua&action=detail&id=<?= $item->Id?>"  class='btn btn-primary mr-3'>Details</a>
 
                                 <a  href="index.php?controller=donmua&action=print&id=<?= $item->Id?>"  class='btn btn-primary mr-3'>Print</a>
                                 <button type="submit" name="dele" value="<?= $item->Id ?>"    class='btn btn-danger'>Delete</button>

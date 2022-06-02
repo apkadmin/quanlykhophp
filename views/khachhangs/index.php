@@ -27,17 +27,6 @@ require_once ('models/khachhang.php');
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tfoot>
-                <tr>
-
-                    <th>ID</th>
-                    <th>Tên KH</th>
-                    <th>Điện thoại</th>
-                    <th>Email</th>
-                    <th>Địa chỉ</th>
-                    <th>Action</th>
-                </tr>
-                </tfoot>
                 <tbody>
 
             <?php
@@ -46,11 +35,11 @@ require_once ('models/khachhang.php');
             ?>
                 <form method="post">
                <tr>
-                   <td><?= $item->Id   ?></td>
-               <td><?= $item->TenKH?></td>
-                   <td><?= $item->DienThoai?></td>
-                   <td><?= $item->Email?></td>
-                   <td><?= $item->DiaChi?></td>
+                   <td onClick ="showDetail('khachhangs','<?=$item->Id?>')"><?= $item->Id   ?></td>
+               <td  onClick ="showDetail('khachhangs','<?=$item->Id?>')"><?= $item->TenKH?></td>
+                   <td  onClick ="showDetail('khachhangs','<?=$item->Id?>')"><?= $item->DienThoai?></td>
+                   <td  onClick ="showDetail('khachhangs','<?=$item->Id?>')"><?= $item->Email?></td>
+                   <td  onClick ="showDetail('khachhangs','<?=$item->Id?>')"><?= $item->DiaChi?></td>
                    <td>
 <!--                       <a  href="index.php?controller=khachhangs&action=showPost&id=--><!--"  class='btn btn-primary mr-3'>Details</a>-->
                        <a  href="index.php?controller=khachhangs&action=edit&id=<?= $item->Id?>"  class='btn btn-primary mr-3'>Edit</a>

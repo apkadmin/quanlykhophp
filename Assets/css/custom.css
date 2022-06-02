@@ -1,0 +1,5 @@
+footer {
+    position: fixed;
+    width: -webkit-fill-available;
+    bottom: 0;
+}

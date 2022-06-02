@@ -2,10 +2,11 @@
 require_once ('models/chitietmua.php');
 $list =[];
 $db =DB::getInstance();
-$reg = $db->query('SELECT ct.Id ,db.Id As "Don",ct.TenSP ,dvt.DonVi ,ct.GiaMua,ct.SoLuong ,ct.ThanhTien FROM ChiTietMua ct JOIN DonViTinh dvt JOIN DonMua db ON ct.IdDonMua = db.Id AND dvt.Id = ct.IdDVT WHERE ct.IdDonMua='.$donmua->Id);
-foreach ($reg->fetchAll() as $item){
-    $list[] =new ChiTietMua($item['Id'],$item['Don'],$item['TenSP'],$item['DonVi'],$item['GiaMua'],$item['SoLuong'],$item['ThanhTien']);
-}
+$reg = $db->query('SELECT chitietmua.Id,sanpham.TenSP, khohang.ten, chitietmua.GiaMua, chitietmua.ThanhTien, donvitinh.DonVi, chitietmua.SoLuong  FROM chitietmua JOIN sanpham JOIN donvitinh JOIN khohang ON chitietmua.TenSP = sanpham.Id AND donvitinh.Id = chitietmua.IdDVT AND khohang.id = sanpham.khoId WHERE chitietmua.IdDonMua='.$donmua->Id);
+// $reg = $db->query('SELECT ct.Id ,db.Id As "Don",ct.TenSP ,dvt.DonVi ,ct.GiaMua,ct.SoLuong ,ct.ThanhTien FROM ChiTietMua ct JOIN DonViTinh dvt JOIN DonMua db ON ct.IdDonMua = db.Id AND dvt.Id = ct.IdDVT WHERE ct.IdDonMua='.$donmua->Id);
+// foreach ($reg->fetchAll() as $item){
+//     $list[] =new ChiTietMua($item['Id'],$item['Don'],$item['TenSP'],$item['DonVi'],$item['GiaMua'],$item['SoLuong'],$item['ThanhTien']);
+// }
 
 
 ?>
@@ -71,29 +72,30 @@ foreach ($reg->fetchAll() as $item){
         <table border="1" width="100%" cellspacing="0" cellpadding="5">
             <thead>
             <tr style="text-align: center;">
-                <th>STT</th>
-                <th>Sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn vị tính</th>
-                <th>Đơn giá</th>
-                <th>Thành tiền</th>
+            <th>STT</th>
+                        <th>Sản Phẩm</th>
+                        <th>Kho</th>
+                        <th>Số Lượng</th>
+                        <th>Đơn Giá</th>
+                        <th>Thành Tiền</th>
             </tr>
             </thead>
             <tbody>
             <?php
             $dem=1;
-            foreach ($list as $item)
+            foreach ($reg as $item)
             {
 
 
                 ?>
                 <tr>
                     <td align="center"> <?=$dem?></td>
-                    <td align="center"><?=$item->TenSP?></td>
-                    <td align="center"><?=$item->SoLuong?></td>
-                    <td align="center"><?=$item->IdDVT?></td>
-                    <td align="right"><?=number_format($item->GiaMua,0,",",".")?> VNĐ</td>
-                    <td align="right"><?=number_format($item->ThanhTien,0,",",".")?> VNĐ</td>
+                    <td align="center"><?=$item['TenSP']?></td>
+                    <td align="center"><?=$item['ten']?></td>
+                    
+                    <td align="center"><?= $item['SoLuong']." (".$item['DonVi'].")" ?></td>
+                    <td align="right"><?=number_format($item['GiaMua'],0,",",".")?> VNĐ</td>
+                    <td align="right"><?=number_format($item['ThanhTien'],0,",",".")?> VNĐ</td>
 
                 </tr>
                 <?php
@@ -123,7 +125,12 @@ foreach ($reg->fetchAll() as $item){
     </section>
     <!-- End block content -->
     </body>
-
+<style>
+    @media print {
+   #accordionSidebar * { display:none; }
+   #section { display:block; }
+}
+</style>
 <?php
 
 if (isset($_POST['chua'])) {

@@ -5,22 +5,30 @@ class KhachHang{
     public $DienThoai;
     public $Email;
     public $DiaChi;
+    public $SHD; //so hop dong
+    public $NgayKy;
+    public $DaiDien;
+    public $CMND;
 
-    function __construct($Id,$TenKH,$DienThoai,$Email,$DiaChi)
+    function __construct($Id,$TenKH,$DienThoai,$Email,$DiaChi, $SHD, $NgayKy, $DaiDien, $CMND)
     {
         $this->Id=$Id;
         $this->TenKH=$TenKH;
         $this->DienThoai=$DienThoai;
         $this->Email=$Email;
         $this->DiaChi=$DiaChi;
+        $this->NgayKy = $NgayKy;
+        $this->SHD = $SHD;
+        $this->DaiDien = $DaiDien;
+        $this->CMND = $CMND;
     }
     static function all()
     {
         $list = [];
         $db =DB::getInstance();
-        $reg = $db->query('select *from KhachHang');
+        $reg = $db->query('select * from KhachHang');
         foreach ($reg->fetchAll() as $item){
-            $list[] =new KhachHang($item['Id'],$item['TenKH'],$item['DienThoai'],$item['Email'],$item['DiaChi']);
+            $list[] =new KhachHang($item['Id'],$item['TenKH'],$item['DienThoai'],$item['Email'],$item['DiaChi'], $item['SHD'], $item['NgayKy'], $item['DaiDien'], $item['CMND']);
         }
         return $list;
     }
@@ -32,21 +40,23 @@ class KhachHang{
 
             $item = $req->fetch();
             if (isset($item['Id'])) {
-                return new KhachHang($item['Id'],$item['TenKH'],$item['DienThoai'],$item['Email'],$item['DiaChi']);
+                return new KhachHang($item['Id'],$item['TenKH'],$item['DienThoai'],$item['Email'],$item['DiaChi'], $item['SHD'], $item['NgayKy'], $item['DaiDien'], $item['CMND']);
             }
             return null;
     }
-    static function add($ten,$dienthoai,$email,$diachi)
+    static function add($ten,$dienthoai,$email,$diachi, $shd, $ngayky, $daidien, $cmnd)
     {
         $db =DB::getInstance();
-        $reg =$db->query('INSERT INTO KhachHang(TenKH,DienThoai,Email,DiaChi) VALUES ("'.$ten.'","'.$dienthoai.'","'.$email.'","'.$diachi.'")');
+        $reg =$db->query('INSERT INTO KhachHang(TenKH,DienThoai,Email,DiaChi, SHD, NgayKy, DaiDien, CMND) VALUES ("'.$ten.'","'.$dienthoai.'","'.$email.'","'.$diachi.'","'.$shd.'","'.$ngayky.'","'.$daidien.'","'.$cmnd.'")');
         header('location:index.php?controller=khachhangs&action=index');
     }
-    static function update($id,$ten,$dienthoai,$email,$diachi)
+
+    static function update($id,$ten,$dienthoai,$email,$diachi,$shd, $ngayky, $daidien, $cmnd)
     {
+
         $db =DB::getInstance();
-        $reg =$db->query('UPDATE KhachHang SET TenKH ="'.$ten.'",DienThoai="'.$dienthoai.'",Email="'.$email.'",DiaChi="'.$diachi.'" WHERE Id='.$id);
-        header('location:index.php?controller=khachhangs&action=index');
+        $reg =$db->query('UPDATE KhachHang SET TenKH ="'.$ten.'",DienThoai="'.$dienthoai.'",Email="'.$email.'",DiaChi="'.$diachi.'",SHD="'.$shd.'",NgayKy="'.$ngayky.'",DaiDien="'.$daidien.'",CMND="'.$cmnd.'" WHERE Id='.$id);
+         header('location:index.php?controller=khachhangs&action=index');
     }
     static function  delete($id){
         $db =DB::getInstance();

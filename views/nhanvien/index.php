@@ -29,19 +29,6 @@ require_once ('models/nhanvien.php');
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tfoot>
-                <tr>
-
-                    <th>ID</th>
-                    <th>Tên NV</th>
-                    <th>Điện thoại</th>
-                    <th>Email</th>
-                    <th>Địa chỉ</th>
-                    <th>Tài khoản</th>
-                    <th>IsActive</th>
-                    <th>Action</th>
-                </tr>
-                </tfoot>
                 <tbody>
 
                 <?php

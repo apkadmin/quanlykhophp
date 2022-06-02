@@ -39,11 +39,13 @@ class DonMua{
         }
         return null;
     }
-    static function add($ngayban,$IdNV,$IdNCC,$Tong,$TrangThai)
+    static function add($ngaymua,$IdNV,$IdNCC,$Tong,$thanhtoan)
     {
+        $maHD = uniqid('HDM_');
+        $time = strtotime($ngaymua);
+        $ngay = date('Y-m-d H:i:s',$time);
         $db =DB::getInstance();
-        $reg =$db->query('INSERT INTO DonMua(NgayMua,IdNV,IdNCC,ThanhTien,TrangThai) VALUES ("'.$ngayban.'",'.$IdNV.','.$IdNCC.','.$Tong.',"'.$TrangThai.'")');
-
+        $reg =$db->query('INSERT INTO DonMua(NgayMua,IdNV,IdNCC,ThanhTien,ThanhToan, MAHD, TrangThai) VALUES ("'.$ngay.'",'.$IdNV.','.$IdNCC.','.$Tong.',"0","'.$maHD.'","'.$thanhtoan.'")');
     }
 
     static function  thanhtoan($id)

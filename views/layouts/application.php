@@ -20,7 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="Assets/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <link href="Assets/css/custom.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -97,9 +97,9 @@
 
 <!-- Custom scripts for all pages-->
 <script src="Assets/js/sb-admin-2.min.js"></script>
-
+<script src="Assets/js/custom.js"></script>
 <!-- Page level plugins -->
-<script src="Assets/vendor/chart.js/Chart.min.js"></script>
+<!-- <script src="Assets/vendor/chart.js/Chart.min.js"></script> -->
 
 <!-- Page level custom scripts -->
 <script src="Assets/js/demo/chart-area-demo.js"></script>

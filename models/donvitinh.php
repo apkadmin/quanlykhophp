@@ -37,6 +37,14 @@ class DonViTinh{
         $reg =$db->query('INSERT INTO DonViTinh(DonVi) VALUES ("'.$ten.'")');
         header('location:index.php?controller=donvitinh&action=index');
     }
+
+    static function addNew($ten)
+    {
+        $db =DB::getInstance();
+        $reg =$db->query('INSERT INTO DonViTinh(DonVi) VALUES ("'.$ten.'")');
+        return $db->lastInsertId();
+    }
+
     static function  update($id,$donvi)
     {
         $db = DB::getInstance();

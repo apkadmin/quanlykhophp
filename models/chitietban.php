@@ -42,10 +42,10 @@ class ChiTietBan{
         }
         return $list;
     }
-    static function add($IdDonHang,$IdSP,$GiaMua,$GiaBan,$SoLuong,$ThanhTien)
+    static function add($IdDonHang,$IdSP,$GiaMua,$GiaBan,$SoLuong,$ThanhTien, $SLHienTai)
     {
         $db =DB::getInstance();
-        $reg =$db->query('INSERT INTO ChiTietBan(IdDonBan,IdSP,GiaMua,GiaBan,SoLuong,ThanhTien) VALUES ('.$IdDonHang.','.$IdSP.','.$GiaMua.','.$GiaBan.','.$SoLuong.','.$ThanhTien.')');
+        $reg =$db->query('INSERT INTO ChiTietBan(IdDonBan,IdSP,GiaMua,GiaBan,SoLuong,ThanhTien, SLHienTai) VALUES ('.$IdDonHang.','.$IdSP.','.$GiaMua.','.$GiaBan.','.$SoLuong.','.$ThanhTien.', '.$SLHienTai.')');
 
     }
 }

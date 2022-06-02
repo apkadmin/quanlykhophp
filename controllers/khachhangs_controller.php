@@ -19,11 +19,11 @@ class KhachHangsController extends BaseController
         //$data =array('khachhangs'=> $khachhangs);
         $this->render('insert');
     }
-    public function showPost()
+    public function detail()
     {
         $khachs = KhachHang::find($_GET['id']);
         $data = array('khachhangs' => $khachs);
-        $this->render('show', $data);
+        $this->render('detail', $data);
     }
     public function edit()
     {

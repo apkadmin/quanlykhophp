@@ -2,6 +2,15 @@
 <?php
 require_once ('controllers/base_controller.php');
 require_once ('models/donban.php');
+require_once ('models/nhacungcap.php');
+require_once ('models/nhanvien.php');
+require_once ('models/donvitinh.php');
+require_once ('models/khohang.php');
+require_once ('models/sanpham.php');
+require_once ('models/khachhang.php');
+require_once ('models/nhanvien.php');
+require_once ('models/chitietban.php');
+
 class DonBanController extends BaseController
 {
     function  __construct()
@@ -16,13 +25,19 @@ class DonBanController extends BaseController
     }
     public function  insert()
     {
-        $this->render('insert');
+        $donvi = DonViTinh::all();
+        $khohang = KhoHang::all();
+        $sanpham = SanPham::all();
+        $nhanvien = NhanVien::all();
+        $khachhang = KhachHang::all();
+        $data =array('sanpham'=> $sanpham, 'khohang' => $khohang, 'donvi' => $donvi, 'nhanvien' => $nhanvien, 'khachhang' => $khachhang);
+        $this->render('insert',$data );
     }
-    public function  show()
+    public function  detail()
     {
         $donban = DonBan::find($_GET['id']);
         $data = array('donban' => $donban);
-        $this->render('show', $data);
+        $this->render('detail', $data);
     }
     public function  print()
     {
